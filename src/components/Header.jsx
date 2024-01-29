@@ -5,6 +5,8 @@ const Header = ({
   setTitle,
   content,
   setContent,
+  deadline,
+  setDeadline,
   titleAndContent,
   setTitleAndContent,
 }) => {
@@ -14,11 +16,13 @@ const Header = ({
       id: titleAndContent.length + 1,
       title: title,
       content: content,
+      deadline: deadline,
       isDone: false,
     };
     setTitleAndContent([...titleAndContent, newCard]);
     setTitle("");
     setContent("");
+    setDeadline("");
   };
   return (
     <div className="add">
@@ -39,6 +43,15 @@ const Header = ({
           }}
           className="제목"
         />
+        마감일
+        <input
+          type="date"
+          className="제목"
+          value={deadline}
+          onChange={(e) => {
+            setDeadline(e.target.value);
+          }}
+        ></input>
       </div>
       <button onClick={addBtn}>추가하기</button>
     </div>

@@ -18,6 +18,7 @@ const Card2 = ({
       id: id.id,
       title: id.title,
       content: id.content,
+      deadline: id.deadline,
     };
     setTitleAndContent([...titleAndContent, canceledCard]);
     setCompletedItems((prevCompletedItems) =>
@@ -26,8 +27,11 @@ const Card2 = ({
   };
   return (
     <div className="card" key={completed.id}>
-      <div className="name">{completed.title}</div>
-      <div className="name2">{completed.content}</div>
+      <div className="cardTitleContentDeadline">
+        <div className="name">{completed.title}</div>
+        <div className="name2">{completed.content}</div>
+        <div className="deadline">마감일 : {completed.deadline}</div>
+      </div>
       <div className="btns">
         <button className="btn" onClick={() => dleBtn2(completed.id)}>
           삭제하기

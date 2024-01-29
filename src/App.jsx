@@ -7,12 +7,14 @@ import Card2 from "./components/Card2";
 function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [deadline, setDeadline] = useState("");
   const [completedItems, setCompletedItems] = useState([]);
   const [titleAndContent, setTitleAndContent] = useState([
     {
       id: 0,
       title: "리액트",
       content: "리액트 입문 완료",
+      deadline: "2024.01.29",
       isDone: false,
     },
   ]);
@@ -29,6 +31,8 @@ function App() {
           setTitle={setTitle}
           content={content}
           setContent={setContent}
+          deadline={deadline}
+          setDeadline={setDeadline}
           titleAndContent={titleAndContent}
           setTitleAndContent={setTitleAndContent}
         />

@@ -13,6 +13,7 @@ const Card = ({
       id: id.id,
       title: id.title,
       content: id.content,
+      deadline: id.deadline,
       isDone: true,
     };
     setCompletedItems([...completedItems, completedCard]);
@@ -27,8 +28,12 @@ const Card = ({
   };
   return (
     <div className="card" key={i.id}>
-      <div className="name">{i.title}</div>
-      <div className="name2">{i.content}</div>
+      <div className="cardTitleContentDeadline">
+        <div className="name">{i.title}</div>
+        <div className="name2">{i.content}</div>
+        <div className="deadline">마감일 : {i.deadline}</div>
+      </div>
+
       <div className="btns">
         <button onClick={() => dleBtn(i.id)} className="btn">
           삭제하기
