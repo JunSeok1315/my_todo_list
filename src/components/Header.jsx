@@ -16,14 +16,23 @@ const Header = ({
       id: titleAndContent.length + 1,
       title: title,
       content: content,
-      deadline: deadline,
+      deadline: formatDate(new Date(deadline)),
       isDone: false,
     };
     setTitleAndContent([...titleAndContent, newCard]);
     setTitle("");
     setContent("");
-    setDeadline("");
+    setDeadline(formatDate(new Date()));
   };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   return (
     <div className="add">
       <div>
