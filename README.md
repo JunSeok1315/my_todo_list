@@ -1,3 +1,5 @@
+# 요구사항
+
 > My Todo List 만들기
 > https://my-todo-list-lac.vercel.app/
 > 배포 완료.
@@ -9,7 +11,7 @@
 - Todo 삭제 하기
 - Todo 완료 상태 변경하기 (완료 ↔ 진행중)
 
-# 요구사항
+# 추가요구사항
 
 - [ ] **Flex 컨테이너 설정**:
   - Todo Card의 전체 컨테이너를 **`flex`** 박스로 설정합니다.
