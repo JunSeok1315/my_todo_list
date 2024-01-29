@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Card from "./components/Card";
@@ -8,16 +8,51 @@ function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [deadline, setDeadline] = useState("");
+  const [selectedSort, setSelectedSort] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [selectedSort2, setSelectedSort2] = useState("asc");
+  const [sortOrder2, setSortOrder2] = useState("asc");
   const [completedItems, setCompletedItems] = useState([]);
   const [titleAndContent, setTitleAndContent] = useState([
     {
       id: 0,
       title: "리액트",
       content: "리액트 입문 완료",
-      deadline: "2024.01.29",
+      deadline: "2024-01-29",
       isDone: false,
     },
   ]);
+  // 정렬 로직
+  const handleSortChange = (event) => {
+    const newSortOrder = event.target.value;
+    setSelectedSort(newSortOrder);
+    setSortOrder(newSortOrder);
+  };
+  const handleSortChange2 = (event) => {
+    const newSortOrder2 = event.target.value;
+    setSelectedSort2(newSortOrder2);
+    setSortOrder2(newSortOrder2);
+  };
+
+  useEffect(() => {
+    const sortedList = [...titleAndContent].sort((a, b) => {
+      const dateA = new Date(a.deadline);
+      const dateB = new Date(b.deadline);
+      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+    });
+
+    setTitleAndContent(sortedList);
+  }, [sortOrder]);
+
+  useEffect(() => {
+    const sortedList2 = [...completedItems].sort((a, b) => {
+      const dateC = new Date(a.deadline);
+      const dateD = new Date(b.deadline);
+      return sortOrder2 === "asc" ? dateC - dateD : dateD - dateC;
+    });
+
+    setCompletedItems(sortedList2);
+  }, [sortOrder2]);
 
   return (
     <div className="body">
@@ -39,6 +74,17 @@ function App() {
         {/* 진행 */}
         <div className="mainContainer">
           <div className="mainName">진행</div>
+          {/* 정렬 */}
+          <div>
+            <select
+              className="셀렉트"
+              value={selectedSort}
+              onChange={handleSortChange}
+            >
+              <option value="asc">오름차순</option>
+              <option value="desc">내림차순</option>
+            </select>
+          </div>
           <div className="cards">
             {titleAndContent.map((i) => {
               return (
@@ -56,6 +102,17 @@ function App() {
         {/* 완료 */}
         <div className="mainContainer">
           <div className="mainName">완료</div>
+          {/* 정렬 */}
+          <div>
+            <select
+              className="셀렉트"
+              value={selectedSort2}
+              onChange={handleSortChange2}
+            >
+              <option value="asc">오름차순</option>
+              <option value="desc">내림차순</option>
+            </select>
+          </div>
           <div className="cards">
             {completedItems.map((completed) => {
               return (
