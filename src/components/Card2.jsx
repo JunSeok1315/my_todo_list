@@ -25,12 +25,24 @@ const Card2 = ({
       prevCompletedItems.filter((i) => i.id !== id.id)
     );
   };
+
+  // 데이터포맷
+  const formattedDeadLind = new Date(completed.deadline).toLocaleDateString(
+    "ko-KR",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "long",
+    }
+  );
+
   return (
     <div className="card" key={completed.id}>
       <div className="cardTitleContentDeadline">
         <div className="name">{completed.title}</div>
         <div className="name2">{completed.content}</div>
-        <div className="deadline">마감일 : {completed.deadline}</div>
+        <div className="deadline">마감일 : {formattedDeadLind}</div>
       </div>
       <div className="btns">
         <button className="btn" onClick={() => dleBtn2(completed.id)}>
