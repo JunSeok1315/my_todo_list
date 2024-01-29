@@ -23,6 +23,14 @@ function App() {
     },
   ]);
 
+  // 데이터포맷
+  const formattedDeadLind = new Date(deadline).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "long",
+  });
+
   // 진행 정렬
   const handleSortChange = (event) => {
     const newSortOrder = event.target.value;

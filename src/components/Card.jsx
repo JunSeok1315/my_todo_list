@@ -26,12 +26,21 @@ const Card = ({
     const dleCard = titleAndContent.filter((i) => i.id !== id);
     setTitleAndContent(dleCard);
   };
+
+  // 데이터포맷
+  const formattedDeadLind = new Date(i.deadline).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "long",
+  });
+
   return (
     <div className="card" key={i.id}>
       <div className="cardTitleContentDeadline">
         <div className="name">{i.title}</div>
         <div className="name2">{i.content}</div>
-        <div className="deadline">마감일 : {i.deadline}</div>
+        <div className="deadline">마감일 : {formattedDeadLind}</div>
       </div>
 
       <div className="btns">
