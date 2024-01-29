@@ -22,16 +22,12 @@ function App() {
       isDone: false,
     },
   ]);
-  // 정렬 로직
+
+  // 진행 정렬
   const handleSortChange = (event) => {
     const newSortOrder = event.target.value;
     setSelectedSort(newSortOrder);
     setSortOrder(newSortOrder);
-  };
-  const handleSortChange2 = (event) => {
-    const newSortOrder2 = event.target.value;
-    setSelectedSort2(newSortOrder2);
-    setSortOrder2(newSortOrder2);
   };
 
   useEffect(() => {
@@ -40,18 +36,23 @@ function App() {
       const dateB = new Date(b.deadline);
       return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
     });
-
     setTitleAndContent(sortedList);
   }, [sortOrder]);
 
-  useEffect(() => {
-    const sortedList2 = [...completedItems].sort((a, b) => {
-      const dateC = new Date(a.deadline);
-      const dateD = new Date(b.deadline);
-      return sortOrder2 === "asc" ? dateC - dateD : dateD - dateC;
-    });
+  // 완료 정렬
+  const handleSortChange2 = (event) => {
+    const newSortOrder2 = event.target.value;
+    setSelectedSort2(newSortOrder2);
+    setSortOrder2(newSortOrder2);
+  };
 
-    setCompletedItems(sortedList2);
+  useEffect(() => {
+    const sortedList = [...completedItems].sort((a, b) => {
+      const dateA = new Date(a.deadline);
+      const dateB = new Date(b.deadline);
+      return sortOrder2 === "asc" ? dateA - dateB : dateB - dateA;
+    });
+    setCompletedItems(sortedList);
   }, [sortOrder2]);
 
   return (
