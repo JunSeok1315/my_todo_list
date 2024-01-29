@@ -16,21 +16,13 @@ const Header = ({
       id: titleAndContent.length + 1,
       title: title,
       content: content,
-      deadline: formatDate(new Date(deadline)),
+      deadline: deadline,
       isDone: false,
     };
     setTitleAndContent([...titleAndContent, newCard]);
     setTitle("");
     setContent("");
-    setDeadline(formatDate(new Date()));
-  };
-
-  const formatDate = (date) => {
-    return date.toLocaleDateString("ko-KR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    setDeadline("");
   };
 
   return (

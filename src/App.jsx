@@ -18,7 +18,7 @@ function App() {
       id: 0,
       title: "리액트",
       content: "리액트 입문 완료",
-      deadline: "2024년 01월 29일",
+      deadline: "2024-01-29",
       isDone: false,
     },
   ]);
