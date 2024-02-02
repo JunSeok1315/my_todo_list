@@ -1,8 +1,18 @@
-import { useCallback, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Card2 from "./components/Card2";
+import {
+  Body,
+  Cards,
+  Container,
+  MainContainer,
+  MainName,
+  TodoHeader,
+  셀렉트,
+} from "./style/TodoStyle";
+import GlobalStyle from "./style/TodoGlobalStyle";
 
 function App() {
   const [title, setTitle] = useState("");
@@ -56,12 +66,13 @@ function App() {
   }, [sortOrder2]);
 
   return (
-    <div className="body">
-      <div className="container">
-        <div className="header">
+    <Body>
+      <GlobalStyle />
+      <Container>
+        <TodoHeader>
           <div>My Todo List</div>
           <div>React</div>
-        </div>
+        </TodoHeader>
         <Header
           title={title}
           setTitle={setTitle}
@@ -73,20 +84,16 @@ function App() {
           setTitleAndContent={setTitleAndContent}
         />
         {/* 진행 */}
-        <div className="mainContainer">
-          <div className="mainName">진행</div>
+        <MainContainer>
+          <MainName>진행</MainName>
           {/* 정렬 */}
           <div>
-            <select
-              className="셀렉트"
-              value={selectedSort}
-              onChange={handleSortChange}
-            >
+            <셀렉트 value={selectedSort} onChange={handleSortChange}>
               <option value="asc">오름차순</option>
               <option value="desc">내림차순</option>
-            </select>
+            </셀렉트>
           </div>
-          <div className="cards">
+          <Cards>
             {titleAndContent.map((i) => {
               return (
                 <Card
@@ -98,23 +105,19 @@ function App() {
                 />
               );
             })}
-          </div>
-        </div>
+          </Cards>
+        </MainContainer>
         {/* 완료 */}
-        <div className="mainContainer">
-          <div className="mainName">완료</div>
+        <MainContainer>
+          <MainName>완료</MainName>
           {/* 정렬 */}
           <div>
-            <select
-              className="셀렉트"
-              value={selectedSort2}
-              onChange={handleSortChange2}
-            >
+            <셀렉트 value={selectedSort2} onChange={handleSortChange2}>
               <option value="asc">오름차순</option>
               <option value="desc">내림차순</option>
-            </select>
+            </셀렉트>
           </div>
-          <div className="cards">
+          <Cards>
             {completedItems.map((completed) => {
               return (
                 <Card2
@@ -126,10 +129,10 @@ function App() {
                 />
               );
             })}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Cards>
+        </MainContainer>
+      </Container>
+    </Body>
   );
 }
 

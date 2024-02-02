@@ -1,4 +1,10 @@
-import { useCallback, useState, useEffect } from "react";
+import {
+  Btn,
+  Btns,
+  CardTitleContentDeadline,
+  Name,
+  TodoCard,
+} from "../style/TodoStyle";
 
 const Card2 = ({
   completed,
@@ -38,21 +44,17 @@ const Card2 = ({
   );
 
   return (
-    <div className="card" key={completed.id}>
-      <div className="cardTitleContentDeadline">
-        <div className="name">{completed.title}</div>
-        <div className="name2">{completed.content}</div>
-        <div className="deadline">마감일 : {formattedDeadLind}</div>
-      </div>
-      <div className="btns">
-        <button className="btn" onClick={() => dleBtn2(completed.id)}>
-          삭제하기
-        </button>
-        <button className="btn" onClick={() => cancelBtn(completed)}>
-          취소
-        </button>
-      </div>
-    </div>
+    <TodoCard key={completed.id}>
+      <CardTitleContentDeadline isDone={completed.isDone}>
+        <Name>{completed.title}</Name>
+        <div>{completed.content}</div>
+        <div>마감일 : {formattedDeadLind}</div>
+      </CardTitleContentDeadline>
+      <Btns>
+        <Btn onClick={() => dleBtn2(completed.id)}>삭제하기</Btn>
+        <Btn onClick={() => cancelBtn(completed)}>취소</Btn>
+      </Btns>
+    </TodoCard>
   );
 };
 

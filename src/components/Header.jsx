@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { Add, 제목 } from "../style/TodoStyle";
 
 const Header = ({
   title,
@@ -26,36 +26,33 @@ const Header = ({
   };
 
   return (
-    <div className="add">
+    <Add>
       <div>
         제목
-        <input
+        <제목
           value={title}
           onChange={(event) => {
             setTitle(event.target.value);
           }}
-          className="제목"
         />
         내용
-        <input
+        <제목
           value={content}
           onChange={(event) => {
             setContent(event.target.value);
           }}
-          className="제목"
         />
         마감일
-        <input
+        <제목
           type="date"
-          className="제목"
           value={deadline}
           onChange={(e) => {
             setDeadline(e.target.value);
           }}
-        ></input>
+        ></제목>
       </div>
       <button onClick={addBtn}>추가하기</button>
-    </div>
+    </Add>
   );
 };
 
